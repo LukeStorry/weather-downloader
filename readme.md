@@ -8,9 +8,8 @@ Simple node script to download and archive images for a auto-refreshing weather 
 chmod +x ./weather-downloader.js
 mkdir -p ~/Library/LaunchAgents
 cp ./local.WeatherDownloader.plist ~/Library/LaunchAgents/
-launchctl bootstrap user/$(id -u) ~/Library/LaunchAgents/local.WeatherDownloader.plist
-
-
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/local.WeatherDownloader.plist
+launchctl enable gui/$(id -u)/local.WeatherDownloader.plist
 ```
 
 ## Run
@@ -21,3 +20,6 @@ or
 ```bash
 launchctl start local.WeatherDownloader
 ```
+
+## Remove
+Unload via `launchctl remove local.WeatherDownloader`
