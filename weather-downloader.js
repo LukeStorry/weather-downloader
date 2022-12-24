@@ -6,12 +6,13 @@ console.log('Downloading Windy.com images...');
 const folder = '/Users/lukestorry/Pictures/wallpaper/';
 
 const dateFilter = new Date(Date.now() - 86400000 * 3)
-const files = fs.readdirSync(folder)
-    .filter(filename => filename.endsWith('.png'))
-    .filter(filename => new Date(filename.split('.')[0]) < dateFilter);
-if (files.length > 0) {
-    files.forEach(filename => fs.renameSync(folder + filename, folder + 'old/' + filename))
-    console.log(`Archived ${files.length} images older than ${dateFilter.toDateString()}`);
+const images = fs.readdirSync(folder).filter(filename => filename.endsWith('.png'))
+console.log(`Previously ${images.length} images.`);
+
+const archivable = images.filter(filename => new Date(filename.split('.')[0]) < dateFilter);
+if (archivable.length > 0) {
+    archivable.forEach(filename => fs.renameSync(folder + filename, folder + 'old/' + filename))
+    console.log(`Archived ${archivable.length} images older than ${dateFilter.toDateString()}`);
 }
 
 const width = 3200, height = 2000, clip = { x: 400, y: 160, width: width - 500, height: height - 300, };
