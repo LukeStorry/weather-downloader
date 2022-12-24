@@ -1,8 +1,9 @@
-import puppeteer from 'puppeteer';
-import fs from 'fs';
+#!/usr/local/bin/node
+const puppeteer = require('puppeteer');
+const fs = require('fs');
 
-// const folder = '/Users/lukestorry/Pictures/wallpaper/';
-const folder = './';
+console.log('Downloading Windy.com images...');
+const folder = '/Users/lukestorry/Pictures/wallpaper/';
 
 const dateFilter = new Date(Date.now() - 86400000 * 3)
 const files = fs.readdirSync(folder)
