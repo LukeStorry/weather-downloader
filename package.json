@@ -1,0 +1,19 @@
+{
+  "name": "weather-downloader",
+  "version": "1.0.0",
+  "description": "Screenshots windy.ty",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^19.4.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "@types/puppeteer": "^7.0.4"
+  }
+}
