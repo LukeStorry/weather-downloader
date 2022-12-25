@@ -5,7 +5,7 @@ const { readdirSync, renameSync, unlinkSync } = require("fs");
 
 const folder = "/Users/lukestorry/Pictures/wallpaper/";
 const threeDaysAgo = add(Date.now(), { days: -3 });
-const dateFormatString = "yyyy-MM-dd_HH-mm.'png'";
+const dateFormatString = "yyyy-MM-dd_HHmm.'png'";
 
 const images = readdirSync(folder)
   .filter((filename) => filename.endsWith(".png"))
@@ -37,7 +37,7 @@ if (dupes.length > 0) {
 
 const width = 3400,
   height = 2000,
-  clip = { x: 220, y: 160, width: width - 550, height: height - 190 };
+  clip = { x: 160, y: 150, width: width - 500, height: height - 187 };
 puppeteer.launch().then(async (browser) => {
   const page = await browser.newPage();
   await page.setViewport({ width: width, height: height });
