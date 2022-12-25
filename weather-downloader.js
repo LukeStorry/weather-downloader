@@ -35,20 +35,18 @@ if (dupes.length > 0) {
   console.log(`Deleted ${dupes.length} images that were duplicates`);
 }
 
-const width = 3200,
+const width = 3400,
   height = 2000,
-  clip = { x: 400, y: 160, width: width - 500, height: height - 300 };
+  clip = { x: 220, y: 160, width: width - 550, height: height - 190 };
 puppeteer.launch().then(async (browser) => {
   const page = await browser.newPage();
   await page.setViewport({ width: width, height: height });
-  await page.goto("https://www.windy.com/?54.828,-22.400,6", {
+  await page.goto("https://www.windy.com/?54.828,-20.400,6", {
     waitUntil: ["networkidle0", "networkidle2"],
   });
-  // for (let i = 0; i < 5; i++) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   const path = folder + format(Date.now(), dateFormatString);
   await page.screenshot({ path, clip });
   console.log("Downloaded:", path);
-  // }
   await browser.close();
 });
