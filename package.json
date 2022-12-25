@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Screenshots windy.ty",
   "scripts": {
-    "start": "node weather-downloader.js"
+    "start": "node weather-downloader.js",
+    "lint": "prettier --print-width 100 -w ./*.{js,ts,md}"
   },
   "license": "ISC",
   "dependencies": {
@@ -11,6 +12,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.17",
-    "@types/puppeteer": "^7.0.4"
+    "@types/puppeteer": "^7.0.4",
+    "prettier": "^2.8.1"
   }
 }
