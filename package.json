@@ -4,7 +4,7 @@
   "description": "Screenshots windy.ty",
   "scripts": {
     "start": "node weather-downloader.js",
-    "lint": "prettier --print-width 100 -w ./*.{js,ts,md}"
+    "lint": "prettier --print-width 120 -w ./*.{js,md}"
   },
   "license": "ISC",
   "dependencies": {

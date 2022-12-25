@@ -1,7 +1,7 @@
 #!/usr/local/bin/node
 const { formatDistanceToNow, format, parse, add, differenceInHours } = require("date-fns");
 const puppeteer = require("puppeteer");
-const { readdirSync, renameSync } = require("fs");
+const { readdirSync, renameSync, unlinkSync } = require("fs");
 
 const folder = "/Users/lukestorry/Pictures/wallpaper/";
 const threeDaysAgo = add(Date.now(), { days: -3 });
@@ -16,17 +16,20 @@ console.log(`Downloading Windy.com images... (${format(Date.now(), "do MMM H:m")
 console.log(`Currently ${images.length} images.`);
 console.log(`Last downloaded ${formatDistanceToNow(images.at(-1).date)} ago`);
 
-const archivable = images.filter(
-  ({ date }, i) =>
-    date < threeDaysAgo ||
-    images
-      .slice(i + 1)
-      .find(({ date: otherDate }) => differenceInHours(date, otherDate) < 1 && date <= otherDate)
-);
-
-if (archivable.length > 0) {
+const old = images.filter(({ date }) => date < threeDaysAgo);
+if (old.length > 0) {
   archivable.forEach(({ filename }) => renameSync(folder + filename, folder + "old/" + filename));
   console.log(`Archived ${archivable.length} images older than ${threeDaysAgo.toDateString()}`);
+}
+
+const dupes = images.filter(({ date }, i) =>
+  images.find(
+    ({ date: otherDate }, otherI) => i != otherI && date <= otherDate && differenceInHours(date, otherDate) == 0
+  )
+);
+if (dupes.length > 0) {
+  dupes.forEach(({ filename }) => unlinkSync(folder + filename));
+  console.log(`Deleted ${dupes.length} images that were duplicates`);
 }
 
 const width = 3200,
