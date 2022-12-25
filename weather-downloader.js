@@ -13,8 +13,11 @@ const images = readdirSync(folder)
   .map((filename) => ({ filename, date: parse(filename, dateFormatString, 0) }));
 
 console.log(`Downloading Windy.com images... (${format(Date.now(), "do MMM H:m")})`);
-console.log(`Currently ${images.length} images.`);
-console.log(`Last downloaded ${formatDistanceToNow(images.at(-1).date)} ago`);
+console.log(
+  `Currently ${images.length} images. ${
+    images.length > 0 ? "Last downloaded " + formatDistanceToNow(images.at(-1).date) + " ago" : ""
+  }`
+);
 
 const old = images.filter(({ date }) => date < threeDaysAgo);
 if (old.length > 0) {
