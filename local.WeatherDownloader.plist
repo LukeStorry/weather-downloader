@@ -11,8 +11,8 @@
 		<key>Program</key>
 		<string>/Users/lukestorry/code/misc/weather-downloader/weather-downloader.js</string>
 		<key>StandardOutPath</key>
-		<string>/Users/lukestorry/code/misc/weather-downloader/stdout.log</string>
+		<string>/Users/lukestorry/code/misc/weather-downloader/job.log</string>
 		<key>StandardErrorPath</key>
-		<string>/Users/lukestorry/code/misc/weather-downloader/stderr.log</string>
+		<string>/Users/lukestorry/code/misc/weather-downloader/job.log</string>
 	</dict>
 </plist>
