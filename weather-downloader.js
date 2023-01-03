@@ -5,14 +5,14 @@ const { readdirSync, renameSync, unlinkSync } = require("fs");
 
 const folder = "/Users/lukestorry/Pictures/wallpaper/";
 const threeDaysAgo = add(Date.now(), { days: -3 });
-const dateFormatString = "yyyy-MM-dd_HHmm.'png'";
+const dateFormatString = "yyyy-MM-dd_HHmm-s.'png'";
 
 const images = readdirSync(folder)
   .filter((filename) => filename.endsWith(".png"))
   .sort()
   .map((filename) => ({ filename, date: parse(filename, dateFormatString, 0) }));
 
-console.log(`Downloading Windy.com images... (${format(Date.now(), "do MMM H:m")})`);
+console.log(`Downloading Windy.com images... (${format(Date.now(), "do MMM H:mm")})`);
 console.log(
   `Currently ${images.length} images. ${
     images.length > 0 ? "Last downloaded " + formatDistanceToNow(images.at(-1).date) + " ago" : ""
@@ -21,8 +21,8 @@ console.log(
 
 const old = images.filter(({ date }) => date < threeDaysAgo);
 if (old.length > 0) {
-  archivable.forEach(({ filename }) => renameSync(folder + filename, folder + "old/" + filename));
-  console.log(`Archived ${archivable.length} images older than ${threeDaysAgo.toDateString()}`);
+  old.forEach(({ filename }) => renameSync(folder + filename, folder + "old/" + filename));
+  console.log(`Archived ${old.length} images older than ${threeDaysAgo.toDateString()}`);
 }
 
 const dupes = images.filter(({ date }, i) =>
