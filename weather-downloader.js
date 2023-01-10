@@ -19,7 +19,7 @@ if (images.length > 0) {
   console.log(`Archived ${images.length} images, last download was ${formatDistanceToNow(images.at(-1).date)} ago.`);
 }
 
-const width = 3400,
+const width = 3700,
   height = 2000,
   clip = { x: 100, y: 150, width: width - 500, height: height - 187 };
 
