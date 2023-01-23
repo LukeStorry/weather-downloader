@@ -15,8 +15,7 @@ const images = readdirSync(folder)
 console.log(`Downloading Windy.com images... (${format(Date.now(), "do MMM H:mm")})`);
 
 if (images.length > 0) {
-  images.forEach(({ filename }) => renameSync(folder + filename, folder + "old/" + filename));
-  console.log(`Archived ${images.length} images, last download was ${formatDistanceToNow(images.at(-1).date)} ago.`);
+  console.log(`Last download was ${formatDistanceToNow(images.at(-1).date)} ago.`)
 }
 
 const width = 3700,
@@ -54,3 +53,10 @@ puppeteer.launch().then(async (browser) => {
   }
   await browser.close();
 });
+
+if (images.length > 1) {
+  images.slice(1).forEach(({ filename }) => renameSync(folder + filename, folder + "old/" + filename));
+  console.log(`Archived ${images.length} images.`);
+}
+
+console.log(`Done.\n\n`);
